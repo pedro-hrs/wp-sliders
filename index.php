@@ -1,7 +1,7 @@
 <?php 
   /*
-Plugin Name: Wordpress Zap Zap
-Plugin URI:  https://www.prodrigues.com.br
+Plugin Name: ZapZap Button
+Plugin URI:  https://pedrohrs.notion.site/ZapZap-ef0704f79aad46fbb0cec49d8dafb76c?pvs=4
 Description: Plugin wordpress simples e direto para inclusão do WhatsApp, sem mimimi. É ativar, inserir o shortcode e ser feliz.
 Version:     0.1.0
 Author:      Pedro Rodrigues
