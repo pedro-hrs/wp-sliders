@@ -1,4 +1,4 @@
-=== Akismet Anti-Spam: Spam Protection ===
+=== ZapZap Button Plugin ===
 Contributors: pedro-hrs
 Tags: whatsapp, button
 Requires at least: 5.8
