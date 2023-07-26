@@ -9,10 +9,8 @@ Plugin para inserção botão flutuante do whatsapp.
 
 ### Como configurar?
 
-Use os parametros ``number`` para informar o número do whatsapp que será chamado.
-Use os parametros ``align`` que pode receber o valor *right* ou *left*, para determinar o alinhamento do botão.
+Após instalar, vá até o painel de **personalizar**, e através da seção 'Whatsapp' informe o número de telefone, escolha a posição e se deseja exibir em todas as páginas.
+Caso não queira exibir em todas as páginas, desabilite essa opção e aplique o shortcode na página que deseja inserir ``[botao-zap]``
 
 **Importante**
 Sempre ao informar um número, insira no inicio o DDI do número desejado (55 - Brasil), como no exemplo abaixo:
-
-``[botao-zap number="55000000000" align="left" ]``
