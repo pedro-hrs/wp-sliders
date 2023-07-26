@@ -14,21 +14,79 @@ function wp_zap_scripts(){
 }
 add_action('wp_enqueue_scripts', 'wp_zap_scripts');
 
-function inserir_zap($atts) {
-    // Definir os atributos padrão do shortcode e mesclar com os atributos recebidos
-    $atts = shortcode_atts(
-        array(
-            'number' => '55123456789', // Número de telefone, incluindo o código do país (55 - Brasil)
-            'align' => 'left', // Alinhamento padrão à esquerda (caso não seja informada)
-        ),
-        $atts
-    );
+function zapzap_customizer( $wp_customize ){
+  $wp_customize->add_section('zap', array(
+      'title' => 'WhatsApp',
+      'priority' => 20,
+  ));
 
-      echo '<div class="fab">
-              <a href="https://wa.me/' .$atts['number']. '" data-toggle="tooltip" title="Fale Conosco"data-placement="left" class="fabWhatsApp" target="_blank" style="'. $atts['align'].':40px">
-                <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
-              </a>
-            </div>';
+  // Titulo
+  $wp_customize->add_setting('whatsapp_numero', array(
+    'default' => '55000000000',
+    'transport' => 'refresh',
+  ));
+  
+  $wp_customize->add_control('whatsapp_numero', array(
+    'label' => 'Número do whatsapp',
+    'description' => 'Será usado no botão flutuante <br>(Incluir o código do país - Brasil 55)',
+    'section' => 'zap',
+    'settings' => 'whatsapp_numero',
+    'type' => 'text',
+    'priority'=> 20
+  ));
+
+  // Botão 1 Link
+
+  $wp_customize->add_setting('exibir_em_todas_as_paginas', array(
+      'default' => true,
+      'transport' => 'refresh',
+  ));
+
+
+  $wp_customize->add_control('exibir_em_todas_as_paginas', array(
+      'label' => 'Adicionar botão em todas as páginas',
+      'description' => 'Caso queira inserir em páginas específicas, desabilite esta opção e insira via shortcode.',
+      'section' => 'zap',
+      'settings' => 'exibir_em_todas_as_paginas',
+      'type' => 'checkbox',
+      'priority'=> 5
+  ));
+
+  // Botão 1
+
+  $wp_customize->add_setting('alinhamento_zap', array(
+      'default' => 'left',
+      'transport' => 'refresh',
+  ));
+
+
+  $wp_customize->add_control('alinhamento_zap', array(
+      'label' => 'Alinhamento',
+      'section' => 'zap',
+      'settings' => 'alinhamento_zap',
+      'type' => 'select',
+      'priority'=> 4,
+      'choices' => array(
+        'left' => __( 'Esquerda' ),
+        'right' => __( 'Direita' ),
+  ),
+  ));
+
+
+}
+  add_action( 'customize_preview_init', 'zapzap_customizer' );
+  add_action('customize_register', 'zapzap_customizer');  
+
+  if(get_theme_mod('exibir_em_todas_as_paginas')){
+    add_action( 'wp_footer', 'inserir_zap', 100 );
+  }
+
+function inserir_zap() {
+    echo '<div class="fab">
+            <a href="https://wa.me/'.get_theme_mod('whatsapp_numero').'" data-toggle="tooltip" title="Fale Conosco"data-placement="left" class="fabWhatsApp" target="_blank" style="'.get_theme_mod('alinhamento_zap').':40px">
+              <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
+            </a>
+          </div>';
 }
 
 add_shortcode('botao-zap', 'inserir_zap');
