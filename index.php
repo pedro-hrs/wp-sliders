@@ -83,13 +83,13 @@ function zapzap_customizer( $wp_customize ){
 
 function inserir_zap() {
     if(get_theme_mod( 'alinhamento_zap') === 'right'){
-      echo '<div class="fabWhatsApp" style="position:absolute; right:120px">
+      echo '<div class="fabWhatsApp" style="right:120px">
             <a href="'.get_theme_mod('whatsapp_url').'" data-toggle="tooltip" title="Fale Conosco" data-placement="left" target="_blank" >
               <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
             </a>
           </div>';
         }else{
-      echo '<div class="fabWhatsApp" style="position:absolute; left:50px">
+      echo '<div class="fabWhatsApp" style="left:50px">
             <a href="'.get_theme_mod('whatsapp_url').'" data-toggle="tooltip" title="Fale Conosco" data-placement="left" target="_blank" >
               <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
             </a>
