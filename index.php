@@ -21,16 +21,16 @@ function zapzap_customizer( $wp_customize ){
   ));
 
   // Titulo
-  $wp_customize->add_setting('whatsapp_numero', array(
+  $wp_customize->add_setting('whatsapp_url', array(
     'default' => '55000000000',
     'transport' => 'refresh',
   ));
   
-  $wp_customize->add_control('whatsapp_numero', array(
-    'label' => 'Número do whatsapp',
-    'description' => 'Será usado no botão flutuante <br>(Incluir o código do país - Brasil 55)',
+  $wp_customize->add_control('whatsapp_url', array(
+    'label' => 'Link do whatsapp',
+    'description' => 'Link que será usado ao clicar no botão flutuante',
     'section' => 'zap',
-    'settings' => 'whatsapp_numero',
+    'settings' => 'whatsapp_url',
     'type' => 'text',
     'priority'=> 20
   ));
@@ -82,12 +82,18 @@ function zapzap_customizer( $wp_customize ){
   }
 
 function inserir_zap() {
-    echo '<div class="fab">
-            <a href="https://wa.me/'.get_theme_mod('whatsapp_numero').'" data-toggle="tooltip" title="Fale Conosco"data-placement="left" class="fabWhatsApp" target="_blank" style="'.get_theme_mod('alinhamento_zap').':40px">
+    if(get_theme_mod( 'alinhamento_zap') === 'right'){
+      echo '<div class="fabWhatsApp" style="position:absolute; right:120px">
+            <a href="'.get_theme_mod('whatsapp_url').'" data-toggle="tooltip" title="Fale Conosco" data-placement="left" target="_blank" >
               <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
             </a>
           </div>';
+        }else{
+      echo '<div class="fabWhatsApp" style="position:absolute; left:50px">
+            <a href="'.get_theme_mod('whatsapp_url').'" data-toggle="tooltip" title="Fale Conosco" data-placement="left" target="_blank" >
+              <img src="'.plugin_dir_url( __FILE__ ).'/public/assets/icon.png">
+            </a>
+          </div>';
+    };
 }
-
-add_shortcode('botao-zap', 'inserir_zap');
 ?>
